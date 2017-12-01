@@ -10,7 +10,9 @@
 		<module>eureka-server</module>
 		<module>eureka-client</module>
 		<module>eureka-consumer</module>
-	</modules>
+        <module>hystrix-dashboard</module>
+        <module>turbine</module>
+    </modules>
 	<packaging>pom</packaging>
 
 	<name>common-service</name>

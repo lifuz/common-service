@@ -1,5 +1,6 @@
 package com.lifuz.eureka.consumer.controller;
 
+import com.lifuz.eureka.consumer.ConsumerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,21 +22,12 @@ public class ConsumerController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private LoadBalancerClient loadBalancerClient;
-
-    @Autowired
-    private RestTemplate restTemplate;
+    private ConsumerService consumerService;
 
     @GetMapping("/consumer")
     public String consumer() {
-
-        ServiceInstance instance = loadBalancerClient.choose("eureka-client");
-
-        String url = "http://" + instance.getHost() + ":" + instance.getPort() + "/hello";
-
-        logger.info("url = {}" , url);
-
-        return restTemplate.getForObject(url, String.class);
+        logger.info("访问consumer");
+        return consumerService.consumer();
 
     }
 
